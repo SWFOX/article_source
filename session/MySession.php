@@ -19,9 +19,15 @@ class MySession
         //获取传过来的 Cookie 中是否有 mySessionId,没有就随机生成
         if (isset($_COOKIE['mySessionId'])) {
             $this->mySessionID = $_COOKIE['mySessionId'];
+
+        //如果 Cookie 中没有获取成功，尝试在 URL 中获取
+        } elseif (isset($_GET['mySessionId'])) {
+            $this->mySessionID = $_GET['mySessionId'];
+
         } else {
             $this->mySessionID = md5(substr(md5(time()), rand(1,10), rand(1,10)));
         }
+
         $this->fileCache = new FileCache();
         $this->sessionVal  = $this->fileCache->get($this->mySessionID) ? $this->fileCache->get($this->mySessionID) : array();
     }
