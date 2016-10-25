@@ -1,11 +1,40 @@
+SqlBuilder 为构造 SQL 语句的链式操作类
+
+操作
+
 ```
 $SqlBuilder = new SqlBuilder('TABLE_A');
 
-var_dump($SqlBuilder->select(array('id','name', 'age'))->where('\'id\'>2')->limit(10,10)->order('`age` DESC')->make());PHP_EOL;
-var_dump($SqlBuilder->delete()->where(array('name'=>'A'))->make());PHP_EOL;
-var_dump($SqlBuilder->add(array('id' => 16, 'name'=>'H', 'age'=>15))->make());PHP_EOL;
-var_dump($SqlBuilder->update(array('name'=>'A', 'age'=>15))->where(array('id'=>'1'))->make());PHP_EOL;
-var_dump($SqlBuilder->select()->join('`TABLE_B` ON `TABLE_A.id`=`TABLE_B.id`')->group('`TABLE_B.name`')->make());PHP_EOL;
+var_dump($SqlBuilder
+    ->select(array('id','name', 'age'))
+    ->where('\'id\'>2')
+    ->limit(10,10)
+    ->order('`age` DESC')
+    ->make()
+);PHP_EOL;
+
+var_dump($SqlBuilder
+    ->delete()
+    ->where(array('name'=>'A'))
+    ->make()
+);PHP_EOL;
+
+var_dump($SqlBuilder
+    ->add(array('id' => 16, 'name'=>'H', 'age'=>15))
+    ->make()
+);PHP_EOL;
+
+var_dump($SqlBuilder
+    ->update(array('name'=>'A', 'age'=>15))
+    ->where(array('id'=>'1'))
+    ->make()
+);PHP_EOL;
+
+var_dump($SqlBuilder
+    ->select()
+    ->join('`TABLE_B` ON `TABLE_A.id`=`TABLE_B.id`')
+    ->group('`TABLE_B.name`')->make()
+);PHP_EOL;
 ```
 
 结果
